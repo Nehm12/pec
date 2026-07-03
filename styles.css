@@ -1,0 +1,812 @@
+/* ═══════════════════════════════════════════════════════
+   POLICES — Google Fonts (Inter + Playfair Display)
+   ═══════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* ═══════════════════════════════════════════════════════
+   VARIABLES CSS (palette, espacement, conteneur)
+   ═══════════════════════════════════════════════════════ */
+:root {
+    --bg-color: #fafaf9;
+    --text-primary: #1c1917;
+    --text-secondary: #57534e;
+    --accent: #0F2A44;
+    --accent-light: #e8f0f3;
+    --accent-gold: #E8A33D;
+    --accent-teal: #2A8A8F;
+    --border-color: #e7e5e4;
+    --section-gap: 8rem;
+    --container-width: 1200px;
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESET & BASE (normalisation navigateur)
+   ═══════════════════════════════════════════════════════ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    /* Grille de fond subtile (papier millimétré léger) */
+    background-image:
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+    color: var(--text-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Titres en serif (Playfair Display) */
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONTENEUR GÉNÉRIQUE — centrage largeur max
+   ═══════════════════════════════════════════════════════ */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ── Espacement vertical des sections ── */
+section {
+    padding: var(--section-gap) 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   UTILITAIRES
+   ═══════════════════════════════════════════════════════ */
+.text-accent { color: var(--accent-gold); }
+.text-center { text-align: center; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+
+/* ═══════════════════════════════════════════════════════
+   EN-TÊTE DE SECTION (titre + trait doré)
+   ═══════════════════════════════════════════════════════ */
+.section-header {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 1rem;
+    color: var(--accent);
+}
+
+/* Trait doré sous le titre */
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-gold);
+}
+
+.section-header p {
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BARRE DE NAVIGATION (fixe en haut)
+   ═══════════════════════════════════════════════════════ */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 15, 15, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 1.5rem 0;
+    transition: all 0.4s ease;
+}
+
+/* Navbar après scroll — plus opaque, plus compacte */
+nav.scrolled {
+    background: rgba(15, 15, 15, 0.9);
+    padding: 0.8rem 0;
+    border-bottom-color: rgba(232, 163, 61, 0.15);
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo PEC (lettres animées individuellement) */
+.logo {
+    display: flex;
+    gap: 0.15rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: 6px;
+    font-weight: 700;
+    color: #fff;
+    perspective: 400px;
+}
+
+.logo-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-20px) rotateX(40deg);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--i) * 0.1s);
+}
+
+.logo-letter.visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+}
+
+/* Liens de navigation */
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    color: rgba(255,255,255,0.6);
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+    color: rgba(232, 163, 61, 0.9);
+}
+
+/* Soulignement doré au survol */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-gold);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BOUTONS (générique + primaire + outline)
+   ═══════════════════════════════════════════════════════ */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--accent);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    margin-left: 1rem;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+/* ═══════════════════════════════════════════════════════
+   HERO — section d'accueil (pleine hauteur)
+   ═══════════════════════════════════════════════════════ */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 5rem;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+}
+
+/* Contenu texte au-dessus du canvas Three.js */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    color: #fff;
+}
+
+.hero-content h1 {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+/* Lettres P-E-C animées individuellement */
+.letter {
+    display: inline-block;
+    font-size: 7rem;
+    font-weight: 700;
+    letter-spacing: 10px;
+    opacity: 0;
+    transform: translateY(60px) rotateX(-40deg);
+    animation: letterReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(0.5s + var(--i) * 0.15s);
+    text-shadow: 0 0 30px rgba(232, 163, 61, 0.3);
+    background: linear-gradient(135deg, #fff 60%, var(--accent-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes letterReveal {
+    0% { opacity: 0; transform: translateY(60px) rotateX(-40deg); }
+    100% { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+/* Tagline discrète en bas à droite */
+.hero-tagline {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    z-index: 10;
+    font-size: 0.85rem;
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    color: rgba(255,255,255,0.3);
+    text-align: right;
+    max-width: 320px;
+    margin: 0;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.8s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Boutons du hero (apparaissent ensemble) */
+.hero-actions {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 1.6s forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-actions .btn-outline {
+    color: #fff;
+    border-color: rgba(255,255,255,0.3);
+}
+.hero-actions .btn-outline:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.hero-actions .btn-primary {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: var(--accent);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Effet de shine au survol du bouton principal */
+.hero-actions .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease;
+}
+.hero-actions .btn-primary:hover::before {
+    left: 100%;
+}
+
+.hero-actions .btn-primary:hover {
+    background-color: transparent;
+    color: var(--accent-gold);
+    box-shadow: 0 0 30px rgba(232, 163, 61, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION « À PROPOS » — pitch + cartes 3 piliers
+   ═══════════════════════════════════════════════════════ */
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-pitch {
+    font-size: 1.25rem;
+    text-align: center;
+    line-height: 1.8;
+    margin-bottom: 4rem;
+    color: var(--text-secondary);
+}
+
+.about-pitch strong {
+    color: var(--accent);
+}
+
+/* Grille des 3 cartes (Expertise, Pédagogie, Performance) */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.about-card {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.about-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent);
+    transform: translateY(-8px);
+}
+
+.about-icon {
+    color: var(--accent-gold);
+    margin-bottom: 1.5rem;
+}
+
+.about-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+
+.about-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════
+   STATISTIQUES (compteurs animés)
+   ═══════════════════════════════════════════════════════ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 4rem;
+}
+
+.stat-number {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION « EXPERTISES » — cartes avec numéro + liste
+   ═══════════════════════════════════════════════════════ */
+.bg-light {
+    background-color: #fff;
+}
+
+.expertises-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.expertise-card {
+    background: var(--bg-color);
+    padding: 3rem 2.5rem;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    position: relative;
+}
+
+.expertise-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent-gold);
+    transform: translateY(-8px);
+}
+
+/* Grand numéro décoratif en fond */
+.expertise-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    opacity: 0.08;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.expertise-card h3 {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.expertise-subtitle {
+    font-size: 0.9rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+.expertise-card > p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.expertise-list li {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+/* Tirets dorés devant chaque point de liste */
+.expertise-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent-gold);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION « RÉALISATIONS » — cartes de projets
+   ═══════════════════════════════════════════════════════ */
+.realisations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.realisation-card {
+    background: #fff;
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.realisation-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--accent);
+    transform: translateY(-8px);
+}
+
+.realisation-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: var(--accent-gold);
+    margin-bottom: 1.5rem;
+}
+
+.realisation-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+}
+
+.realisation-context,
+.realisation-result {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.realisation-context strong,
+.realisation-result strong {
+    color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION « COACH » — photo + biographie
+   ═══════════════════════════════════════════════════════ */
+.coach {
+    padding: var(--section-gap) 0;
+    background: var(--bg-color);
+}
+
+/* Disposition côte à côte : image | texte */
+.coach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.coach-image {
+    display: flex;
+    justify-content: center;
+}
+
+/* Placeholder photo (remplacer par une vraie image plus tard) */
+.coach-photo-placeholder {
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 3/4;
+    background: var(--accent-light);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 20px 20px 0px var(--accent-light);
+}
+
+.coach-photo-placeholder svg {
+    width: 80px;
+    height: 80px;
+    color: var(--accent);
+    opacity: 0.3;
+}
+
+.coach-text .section-header {
+    margin-bottom: 2rem;
+}
+
+.coach-text p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+/* Mini statistiques du coach */
+.coach-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.coach-stat {
+    text-align: left;
+}
+
+.coach-stat-number {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 0.3rem;
+}
+
+.coach-stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION « CONTACT » — formulaire + infos
+   ═══════════════════════════════════════════════════════ */
+.contact-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-form {
+    margin-top: 3rem;
+    text-align: left;
+    background: #fff;
+    padding: 3rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #fff;
+}
+
+.contact-info {
+    margin-top: 3rem;
+}
+
+.contact-info a {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.contact-info p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════ */
+footer {
+    padding: 4rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE — tablettes et mobiles
+   ═══════════════════════════════════════════════════════ */
+
+/* Tablettes paysage */
+@media (max-width: 1024px) {
+    .expertises-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobiles et petites tablettes */
+@media (max-width: 768px) {
+    :root {
+        --section-gap: 5rem;
+    }
+
+    .letter {
+        font-size: 4rem;
+        letter-spacing: 5px;
+    }
+
+    .hero-tagline {
+        font-size: 0.75rem;
+        right: 1rem;
+        bottom: 1rem;
+        max-width: 200px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .coach-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .realisations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
+        flex-wrap: wrap;
+    }
+}
