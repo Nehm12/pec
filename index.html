@@ -6,14 +6,6 @@
     <title>PEC | Performance Expertise Consulting</title>
     <meta name="description" content="PEC – Performance Expertise Consulting. Accompagner les organisations, les équipes et les professionnels dans le développement de leurs compétences.">
     <link rel="stylesheet" href="styles.css">
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-        }
-    }
-    </script>
 </head>
 <body>
 
@@ -30,6 +22,61 @@
     </nav>
 
     <header class="hero" id="hero">
+        <div class="hero-media" aria-hidden="true">
+            <video
+                class="hero-video"
+                poster="assets/images/hero-rugby-poster.svg"
+                preload="auto"
+                autoplay
+                muted
+                loop
+                playsinline
+                data-desktop-mp4="assets/video/hero-rugby-highlights.mp4"
+                data-desktop-webm="assets/video/hero-rugby-highlights.webm"
+                data-mobile-mp4="assets/video/hero-rugby-highlights-mobile.mp4">
+                <!-- Remplacer ces fichiers par les vrais exports H.264/WebM du highlight rugby. -->
+                <source data-src="assets/video/hero-rugby-highlights.mp4" type="video/mp4">
+                <source data-src="assets/video/hero-rugby-highlights.webm" type="video/webm">
+            </video>
+        </div>
+        <div class="hero-poster" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-vignette" aria-hidden="true"></div>
+        <div class="hero-grain" aria-hidden="true"></div>
+
+        <div class="hero-content">
+            <span class="hero-badge">Formation & Performance Sportive de Haut Niveau</span>
+            <h1 aria-label="PEC">
+                <span class="letter" style="--i:0">P</span>
+                <span class="letter" style="--i:1">E</span>
+                <span class="letter" style="--i:2">C</span>
+            </h1>
+            <p class="hero-kicker">Accompagner les entraîneurs, staffs et organisations dans le développement durable de leur performance.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Démarrer un Projet</a>
+                <a href="#expertises" class="btn btn-outline">Voir les Expertises</a>
+            </div>
+        </div>
+
+        <div class="hero-stats" aria-label="Chiffres clés PEC">
+            <div class="hero-stat-card" style="--i:0">
+                <span class="hero-stat-number">15+</span>
+                <span class="hero-stat-label">Années d'Expérience</span>
+            </div>
+            <div class="hero-stat-card" style="--i:1">
+                <span class="hero-stat-number">50+</span>
+                <span class="hero-stat-label">Projets Accompagnés</span>
+            </div>
+            <div class="hero-stat-card" style="--i:2">
+                <span class="hero-stat-number">500+</span>
+                <span class="hero-stat-label">Professionnels Formés</span>
+            </div>
+        </div>
+
+        <a href="#coach" class="hero-scroll-indicator" aria-label="Découvrir la suite">
+            <span></span>
+        </a>
+
         <p class="hero-tagline">"Développer les compétences pour améliorer durablement la performance."</p>
     </header>
 
@@ -258,6 +305,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script type="module" src="hero-three.js"></script>
+    <script src="hero-video.js"></script>
 </body>
 </html>
