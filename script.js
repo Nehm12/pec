@@ -63,6 +63,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', updateNav);
 
+    // ── Menu burger mobile ──
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileNavLinks = document.querySelector('.nav-links');
+
+    function toggleMenu(forceClose = false) {
+        const isOpen = forceClose ? false : mobileNavLinks.classList.contains('open');
+        mobileNavLinks.classList.toggle('open', !isOpen);
+        menuToggle.classList.toggle('active', !isOpen);
+        menuToggle.setAttribute('aria-expanded', !isOpen);
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+    }
+
+    menuToggle.addEventListener('click', () => toggleMenu());
+
+    // Ferme le menu quand on clique sur un lien
+    mobileNavLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(true));
+    });
+
     // ── Compteurs de statistiques animés ──
     // Les nombres augmentent de 0 à leur cible quand la section apparaît
     const stats = document.querySelectorAll('.stat-number');
