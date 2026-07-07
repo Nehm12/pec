@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── Navigation smooth scroll (ancres) ──
-    // Intercepte les clics sur les liens de navigation pour un défilement fluide
-    const navLinks = document.querySelectorAll('.nav-links a');
+    // Intercepte les clics sur les liens internes pour un défilement fluide
+    const navLinks = document.querySelectorAll('.nav-links a, .hero-actions a[href^="#"], .hero-scroll-indicator[href^="#"]');
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {

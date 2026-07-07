@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-label="Poster abstrait rugby PEC">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#030405"/>
+      <stop offset="0.42" stop-color="#0f2a44"/>
+      <stop offset="1" stop-color="#050606"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="68%" cy="34%" r="45%">
+      <stop offset="0" stop-color="#e8a33d" stop-opacity="0.46"/>
+      <stop offset="0.46" stop-color="#e8a33d" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#e8a33d" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.2"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="field" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#0a1411"/>
+      <stop offset="0.52" stop-color="#16382f"/>
+      <stop offset="1" stop-color="#09110f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+  <path d="M0 730 C360 650 660 700 1000 640 C1300 588 1590 602 1920 530 L1920 1080 L0 1080 Z" fill="url(#field)"/>
+  <g opacity="0.24" stroke="#ffffff" stroke-width="4">
+    <path d="M0 842 C430 790 815 802 1190 746 C1460 706 1690 690 1920 640"/>
+    <path d="M0 930 C420 876 820 884 1200 824 C1510 776 1730 760 1920 722"/>
+    <path d="M415 715 L300 1080"/>
+    <path d="M1015 650 L1038 1080"/>
+    <path d="M1550 598 L1715 1080"/>
+  </g>
+  <g opacity="0.5">
+    <ellipse cx="1190" cy="622" rx="112" ry="42" fill="#e8a33d" opacity="0.24" transform="rotate(-14 1190 622)"/>
+    <ellipse cx="1190" cy="622" rx="82" ry="30" fill="none" stroke="#f5d397" stroke-width="6" opacity="0.42" transform="rotate(-14 1190 622)"/>
+    <path d="M1138 625 C1170 611 1212 605 1246 613" fill="none" stroke="#f5d397" stroke-width="5" stroke-linecap="round" opacity="0.45"/>
+  </g>
+  <g opacity="0.34" fill="#f7f3ea">
+    <circle cx="320" cy="610" r="18"/>
+    <rect x="301" y="632" width="38" height="96" rx="16"/>
+    <circle cx="410" cy="640" r="15"/>
+    <rect x="394" y="660" width="32" height="80" rx="14"/>
+    <circle cx="1450" cy="560" r="17"/>
+    <rect x="1432" y="582" width="36" height="94" rx="15"/>
+    <circle cx="1540" cy="592" r="14"/>
+    <rect x="1525" y="612" width="30" height="78" rx="13"/>
+  </g>
+  <rect width="1920" height="1080" fill="#000" opacity="0.22"/>
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.42"/>
+</svg>
